@@ -7,12 +7,13 @@
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    title: `Project Friday`,
+    description: `Discover PROJECT FRIDAY, a bold and contemporary lifestyle apparel brand from Jaipur, India. Designed for the fearless and fashion-forward, we blend urban aesthetics with premium craftsmanship to create statement pieces that celebrate individuality. Elevate your style with PROJECT FRIDAY—where every day feels like a new beginning.`,
+    author: `RDS Corp`,
+    siteUrl: `https://projectfriday.in/`,
   },
   plugins: [
     `gatsby-plugin-image`,
@@ -28,15 +29,15 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Project Friday`,
+        short_name: `projectfriday`,
         start_url: `/`,
         background_color: `#663399`,
         // This will impact how browsers show your PWA/website
         // https://css-tricks.com/meta-theme-color-and-trickery/
         // theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/favicon-32x32.jpg`, // This path is relative to the root of the site.
       },
     },
   ],

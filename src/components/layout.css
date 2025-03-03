@@ -1,13 +1,17 @@
 :root {
   --border-radius: 4px;
-  --color-text: #333;
-  --color-primary: #7026b9;
+  --color-text: #ffffff70;
+  --color-primary: #ffffff;
+  --color-secondary: #ffffff;
+  --color-secondarylight: #ffffff70;
+  --color-secondarydark: #ffffff70;
   --color-code-bg: #fff4db;
   --color-code: #8a6534;
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;
+  --font-lt: 28px;
   --font-lg: 18px;
   --font-md: 16px;
   --font-sm: 14px;
@@ -21,8 +25,7 @@
   --space-4: 24px;
   --space-5: 32px;
   --space-6: 64px;
-  --size-content: 54rem;
-  --size-gutter: var(--space-5);
+  --size-content: 90vw;
   --size-gap: var(--space-6);
 }
 html {
@@ -42,6 +45,7 @@ body {
   font-weight: normal;
   margin: 0;
   word-wrap: break-word;
+  background-color: #000;
 }
 a {
   background-color: transparent;
@@ -221,4 +225,230 @@ pre code:after,
 pre tt:before,
 pre tt:after {
   content: none;
+}
+@font-face {
+  font-family: 'AdamCgProBold';
+  src: url('../assets/fonts/VennEx_Trial_XBd.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AdamCgPro';
+  src: url('../assets/fonts/VennEx_Trial_Rg.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.logo-text {
+  font-family: 'AdamCgProBold';
+}
+
+.nav-text {
+  font-family: 'AdamCgPro';
+}
+
+.footer-div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ftt{
+  font-family: 'AdamCgPro';
+  font-weight: bold;
+  font-size: 15px;
+  color: #ffffff90;
+}
+.fbt{
+  font-family: 'AdamCgPro';
+  font-size: 13px;
+  color: #ffffffaa;
+  span{
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  span:hover{
+    text-decoration: none;
+  }
+}
+
+.eib{
+  height: 40px;
+  width: 350px;
+  text-indent: 10px;
+  font-family: 'AdamCgPro';
+  background-color: #fff;
+  outline: none;
+  border: none;
+}
+
+.esb{
+  height: 40px;
+  width: 70px;
+  font-family: 'AdamCgPro';
+  background-color: #056D63;
+  outline: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+.esb:hover{
+  background-color: #056D63cc;
+}
+.esb:active{
+  background-color: #056D63;
+}
+.eib2{
+  height: 40px;
+  width: 350px;
+  text-indent: 10px;
+  font-family: 'AdamCgPro';
+  background-color: #dddddd;
+  outline: none;
+  border: none;
+}
+
+.esb2{
+  height: 40px;
+  width: 70px;
+  font-family: 'AdamCgPro';
+  background-color: #056D63;
+  outline: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+.esb2:hover{
+  background-color: #056D63cc;
+}
+.esb2:active{
+  background-color: #056D63;
+}
+.heroImage{
+  aspect-ratio: 16 / 8;
+}
+.prodMainImage{
+  aspect-ratio: 8 / 12;
+}
+.prodSubImage{
+  aspect-ratio: 8 / 5.865;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.copyRightText{
+  color: #999;
+}
+@media (max-width: 768px) {
+  .promoTextComponent{
+    width: 100%;
+    span:nth-child(odd){
+      display: none;
+    }
+    span:nth-child(even){
+      display: none;
+    }
+    span:first-child{
+      display: block;
+      color: #fff;
+    }
+  }
+  .logoTextComponent{
+    width: 100%;
+    .logo-text:nth-child(odd){
+      display: none;
+    }
+    .logo-text:nth-child(even){
+      display: none;
+    }
+    .logo-text:first-child{
+      display: block;
+      color: #fff;
+    }
+  }
+  .sectionTextComponent{
+    width: 100%;
+    .logo-text:nth-child(odd){
+      display: none;
+    }
+    .logo-text:nth-child(even){
+      display: none;
+    }
+    .logo-text:first-child{
+      display: block;
+      color: #fff;
+      width: 100%;
+      text-align: center;
+    }
+  }
+  .heroImage{
+    aspect-ratio: 8 / 12;
+  }
+  .footer-div{
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 30px;
+  }
+  .eib{
+    height: 40px;
+    width: 100%;
+    text-indent: 10px;
+    font-family: 'AdamCgPro';
+    background-color: #fff;
+    outline: none;
+    border: none;
+  }
+  .esb{
+    height: 40px;
+    width: 100%;
+    font-family: 'AdamCgPro';
+    background-color: #056D63;
+    outline: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+  }
+  .esb:hover{
+    background-color: #056D63;
+  }
+  .esb:active{
+    background-color: #056D63;
+  }
+  .copyRightText{
+    font-size: 12px;
+    color: #999;
+    padding-bottom: 60px;
+  }
+  .introPopupClass{
+    width: 350px;
+  }
+  .eib2{
+    height: 40px;
+    width: 100%;
+    text-indent: 10px;
+    font-family: 'AdamCgPro';
+    background-color: #dddddd;
+    outline: none;
+    border: none;
+  }
+  
+  .esb2{
+    height: 40px;
+    width: 100%;
+    font-family: 'AdamCgPro';
+    background-color: #056D63;
+    outline: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+  }
+  .esb2:hover{
+    background-color: #056D63;
+  }
+  .esb2:active{
+    background-color: #056D63cc;
+  }
 }

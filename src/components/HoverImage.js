@@ -1,0 +1,37 @@
+import React from "react";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { graphql, useStaticQuery } from "gatsby";
+import "./imageHover.css"; // Import CSS
+
+const HoverImage = ({ dIpath, hIpath }) => {
+  // Fetch all images ONCE
+  const data = useStaticQuery(graphql`
+    query {
+      allFile {
+        nodes {
+          relativePath
+          childImageSharp {
+            gatsbyImageData(layout: CONSTRAINED)
+          }
+        }
+      }
+    }
+  `);
+
+  // Find the images dynamically
+  const defaultImgData = data.allFile.nodes.find(node => node.relativePath === dIpath);
+  const hoverImgData = data.allFile.nodes.find(node => node.relativePath === hIpath);
+
+  // Convert to optimized Gatsby images
+  const defaultImg = defaultImgData ? getImage(defaultImgData) : null;
+  const hoverImg = hoverImgData ? getImage(hoverImgData) : null;
+
+  return (
+    <div className="image-container">
+      {defaultImg && <GatsbyImage image={defaultImg} alt="Default" className="default-image" />}
+      {hoverImg && <GatsbyImage image={hoverImg} alt="Hover" className="hover-image" />}
+    </div>
+  );
+};
+
+export default HoverImage;

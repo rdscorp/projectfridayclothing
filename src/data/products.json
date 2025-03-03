@@ -1,0 +1,186 @@
+[
+    {
+        "title": "Meowtallica",
+        "slug": "meowtallica",
+        "price": 1799,
+        "compare_at_price": 1295,
+        "description": "A bold black t-shirt with a fierce feline-inspired heavy metal design.",
+        "image": [
+            "IMG_8114.jpg",
+            "IMG_8115.jpg",
+            "IMG_8116.jpg",
+            "IMG_8117.jpg"
+        ],
+        "size": [
+            "S",
+            "M",
+            "L"
+        ],
+        "color": [
+            "RED",
+            "BLACK",
+            "WHITE"
+        ]
+    },
+    {
+        "title": "Friday Dreams",
+        "slug": "friday-dreams",
+        "price": 1799,
+        "compare_at_price": 1295,
+        "description": "A comfortable and stylish t-shirt, perfect for your Friday mood.",
+        "image": [
+            "IMG_8090.jpg",
+            "IMG_2359.jpeg",
+            "IMG_8092.jpg",
+            "IMG_8091.jpg"
+        ],
+        "size": [
+            "S",
+            "M",
+            "L"
+        ],
+        "color": [
+            "RED",
+            "BLACK",
+            "WHITE"
+        ]
+    },
+    {
+        "title": "Gods Only Child",
+        "slug": "gods-only-child",
+        "price": 1799,
+        "compare_at_price": 1295,
+        "description": "A divine statement t-shirt for those who embrace their individuality.",
+        "image": [
+            "IMG_8094.jpg",
+            "IMG_8095.jpg",
+            "IMG_8096.jpg",
+            "IMG_8097.jpg"
+        ],
+        "size": [
+            "S",
+            "M",
+            "L"
+        ],
+        "color": [
+            "RED",
+            "BLACK",
+            "WHITE"
+        ]
+    },
+    {
+        "title": "The Sword",
+        "slug": "the-sword",
+        "price": 1799,
+        "compare_at_price": 1295,
+        "description": "A sharp and striking t-shirt design inspired by legendary warriors.",
+        "image": [
+            "IMG_8098.jpg",
+            "IMG_8100.jpg",
+            "IMG_8102.jpg",
+            "IMG_8104.jpg"
+        ],
+        "size": [
+            "S",
+            "M",
+            "L"
+        ],
+        "color": [
+            "RED",
+            "BLACK",
+            "WHITE"
+        ]
+    },
+    {
+        "title": "Trustissue",
+        "slug": "trustissue",
+        "price": 1799,
+        "compare_at_price": 1295,
+        "description": "A bold statement piece for those who keep their circle small and real.",
+        "image": [
+            "IMG_8105.jpg",
+            "IMG_8106.jpg",
+            "IMG_8107.jpg",
+            "IMG_8108.jpg"
+        ],
+        "size": [
+            "S",
+            "M",
+            "L"
+        ],
+        "color": [
+            "RED",
+            "BLACK",
+            "WHITE"
+        ]
+    },
+    {
+        "title": "Fallen Angel",
+        "slug": "fallen-angel",
+        "price": 1799,
+        "compare_at_price": 1295,
+        "description": "A t-shirt that blends dark aesthetics with a rebellious spirit.",
+        "image": [
+            "IMG_8111.jpg",
+            "IMG_8110.jpg",
+            "IMG_8109.jpg",
+            "IMG_8112.jpg"
+        ],
+        "size": [
+            "S",
+            "M",
+            "L"
+        ],
+        "color": [
+            "RED",
+            "BLACK",
+            "WHITE"
+        ]
+    },
+    {
+        "title": "Mastermind",
+        "slug": "mastermind",
+        "price": 1799,
+        "compare_at_price": 1295,
+        "description": "A strategic and stylish t-shirt for those who think three moves ahead.",
+        "image": [
+            "IMG_8129.jpg",
+            "IMG_8128.jpg",
+            "IMG_8127.jpg",
+            "IMG_8130.jpg"
+        ],
+        "size": [
+            "S",
+            "M",
+            "L"
+        ],
+        "color": [
+            "RED",
+            "BLACK",
+            "WHITE"
+        ]
+    },
+    {
+        "title": "Gods Child",
+        "slug": "gods-child",
+        "price": 1799,
+        "compare_at_price": 1295,
+        "description": "A divine statement t-shirt for those who embrace their self.",
+        "image": [
+            "IMG_8120.jpg",
+            "IMG_8119.jpg",
+            "IMG_8118.jpg",
+            "IMG_8121.jpg"
+        ],
+        "size": [
+            "S",
+            "M",
+            "L"
+        ],
+        "color": [
+            "RED",
+            "BLACK",
+            "WHITE"
+        ]
+    }
+]

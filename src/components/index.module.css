@@ -2,15 +2,15 @@
   display: grid;
   margin: 0;
   /* https://css-tricks.com/responsive-layouts-fewer-media-queries/ */
-  --w: 280px;
-  --n: 2;
+  --w: 200px;
+  --n: 4;
   gap: var(--size-gap);
   grid-template-columns: repeat(
     auto-fit,
     minmax(max(var(--w), 100%/ (var(--n) + 1) + 0.1%), 1fr)
   );
   margin-bottom: var(--size-gap);
-  margin-top: var(--size-gap);
+  margin-top: 10px;
 }
 
 .listItem {
@@ -18,20 +18,9 @@
 }
 
 .listItem::marker {
-  color: #e95800;
+  color: transparent;
 }
 
-.listItem:nth-child(2)::marker {
-  color: #159bf3;
-}
-
-.listItem:nth-child(3)::marker {
-  color: #8eb814;
-}
-
-.listItem:nth-child(4)::marker {
-  color: #663399;
-}
 
 .listItemLink {
   color: var(--color-primary);
@@ -51,4 +40,78 @@
 .intro {
   max-width: none;
   line-height: var(--line-height-loose);
+}
+
+.image-container {
+  display: grid;
+  place-items: center; /* Center content inside the container */
+  position: relative;
+}
+
+.parentContainer {
+  z-index: 10;
+  margin-top: -70px;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
+.hoverPopup {
+  position: absolute;
+  top: -80px; /* Adjust as needed */
+  height: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  color: black;
+  padding: 10px;
+  white-space: nowrap;
+  display: none;
+  line-height: 40px;
+  text-align: center;
+  span{
+    cursor: pointer;
+    border: #000 solid;
+    padding: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  span:hover{
+    color: #fff;
+    background-color: #000;
+  }
+  span:active{
+    color: #fff;
+    background-color: #00000090;
+  }
+}
+
+.atcb {
+  height: 40px;
+  width: 40px;
+  border-radius: 100px;
+  line-height: 35px;
+  font-size: 32px;
+  color: #000;
+  background-color: #ffffff99;
+  padding-left: 3px;
+  cursor: pointer;
+}
+
+
+.atcb:hover + .hoverPopup {
+  display: block;
+}
+
+.atcb:hover ~ .hoverPopup,
+.hoverPopup:hover {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .list {
+    place-content: center;
+  }
 }
