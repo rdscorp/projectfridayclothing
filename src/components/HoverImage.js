@@ -1,7 +1,6 @@
 import React from "react";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { graphql, useStaticQuery } from "gatsby";
-import "./imageHover.css"; // Import CSS
 
 const HoverImage = ({ dIpath, hIpath }) => {
   // Fetch all images ONCE
@@ -28,8 +27,12 @@ const HoverImage = ({ dIpath, hIpath }) => {
 
   return (
     <div className="image-container">
-      {defaultImg && <GatsbyImage image={defaultImg} alt="Default" className="default-image" />}
-      {hoverImg && <GatsbyImage image={hoverImg} alt="Hover" className="hover-image" />}
+      {defaultImg && <GatsbyImage image={defaultImg} alt="Default" className="default-image" style={{
+        position: "absolute"
+      }} />}
+      {hoverImg && <GatsbyImage image={hoverImg} alt="Hover" className="hover-image" style={{
+        position: "absolute"
+      }} />}
     </div>
   );
 };

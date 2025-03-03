@@ -452,3 +452,31 @@ pre tt:after {
     background-color: #056D63cc;
   }
 }
+
+.image-container {
+  position: relative;
+  width: 300px; /* Adjust as needed */
+  height: 385px;
+  z-index: 10;
+}
+
+.default-image,
+.hover-image {
+  position: absolute;
+  width: 100%;
+  aspect-ratio: 12/15;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 10;
+}
+
+.hover-image {
+  opacity: 0;
+}
+
+.image-container:hover .hover-image {
+  opacity: 1;
+}
+
+.image-container:hover .default-image {
+  opacity: 0;
+}
