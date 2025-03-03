@@ -3,10 +3,7 @@ import { db } from "./firebase";
 import { collection, getDocs } from "firebase/firestore";
 
 const useStock = () => {
-  const [stock, setStock] = useState(() => {
-    const savedStock = localStorage.getItem("stockData");
-    return savedStock ? JSON.parse(savedStock) : {};
-  });
+  const [stock, setStock] = useState({});
 
   useEffect(() => {
     const fetchStock = async () => {
