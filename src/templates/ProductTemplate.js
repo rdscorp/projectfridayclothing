@@ -1,48 +1,61 @@
 import React, { useEffect, useState } from "react";
-import { graphql, useStaticQuery } from "gatsby";
+import { graphql } from "gatsby";
 import Header from "../components/header";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
-const ProductPage = ({ pageContext }) => {
+// Custom hook for Razorpay script loading
+function useRazorpayScript() {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/magic-checkout.js";
+    script.async = true;
+    script.onload = () => console.log("Razorpay script loaded successfully");
+    script.onerror = () => console.error("Failed to load Razorpay script");
+    document.body.appendChild(script);
+    
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
+  }, []);
+}
+
+const ProductPage = ({ data, pageContext }) => {
   const { slug, title, price, compare_at_price, description, image, size, color } = pageContext.product;
 
   const [cart, setCart] = useState({});
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
 
+  // Load Razorpay script
+  useRazorpayScript();
+
   // Load cart from localStorage after component mounts
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window === "undefined") return;
+    
+    try {
       const storedCart = JSON.parse(localStorage.getItem("cart")) || {};
       setCart(storedCart);
+    } catch (error) {
+      console.error("Failed to parse cart from localStorage:", error);
+      setCart({});
     }
   }, []);
 
   // Save cart to localStorage when it changes
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window === "undefined") return;
+    
+    try {
       localStorage.setItem("cart", JSON.stringify(cart));
+    } catch (error) {
+      console.error("Failed to save cart to localStorage:", error);
     }
   }, [cart]);
-
-  // Fetch all images
-  const data = useStaticQuery(graphql`
-    query AllProductImages {
-      allFile(filter: { sourceInstanceName: { eq: "images" } }) {
-        nodes {
-          name
-          childImageSharp {
-            gatsbyImageData(width: 500)
-          }
-        }
-      }
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
 
   // Helper function to get image by filename (without extension)
   const getImageByName = (fileName) => {
@@ -52,21 +65,12 @@ const ProductPage = ({ pageContext }) => {
     return imageNode ? getImage(imageNode.childImageSharp) : null;
   };
 
-  // Load Razorpay Magic Checkout
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://checkout.razorpay.com/v1/magic-checkout.js";
-    script.async = true;
-    script.onload = () => console.log("Razorpay script loaded successfully");
-    script.onerror = () => console.error("Failed to load Razorpay script");
-    document.body.appendChild(script);
-    return () => document.body.removeChild(script);
-  }, []);
-
   // Handle Add to Cart
   const handleAddToCart = () => {
     if (!selectedSize || !selectedColor) {
-      alert("Please select both a size and a color.");
+      if (typeof window !== "undefined") {
+        alert("Please select both a size and a color.");
+      }
       return;
     }
 
@@ -74,11 +78,21 @@ const ProductPage = ({ pageContext }) => {
     const newCart = { ...cart, [variantKey]: { name: title, compare_at_price, qty: 1 } };
 
     setCart(newCart);
-    alert("Item added to cart!");
+    
+    if (typeof window !== "undefined") {
+      alert("Item added to cart!");
+    }
   };
 
   // Handle Buy Now
   const handlePayment = async () => {
+    if (typeof window === "undefined") return;
+    
+    if (!selectedSize || !selectedColor) {
+      alert("Please select both a size and a color.");
+      return;
+    }
+    
     try {
       const orderResponse = await fetch("https://b4878270-razorpay-order-worker.projectfridayclothing.workers.dev", {
         method: "POST",
@@ -99,8 +113,8 @@ const ProductPage = ({ pageContext }) => {
               "offer_price": compare_at_price * 100,
               "tax_amount": 0,
               "quantity": 1,
-              "name": "Meowtallica",
-              "description": "Meowtallica - Tshirt",
+              "name": title,
+              "description": `${title} - ${selectedColor} - ${selectedSize}`,
               "weight": 1700,
               "dimensions": {
                 "length": 1700,
@@ -118,8 +132,12 @@ const ProductPage = ({ pageContext }) => {
       const orderData = await orderResponse.json();
       if (!orderData.id) throw new Error("Order creation failed");
 
+      if (!window.Razorpay) {
+        throw new Error("Razorpay not available");
+      }
+
       const options = {
-        key: process.env.RZP_AUTH,
+        key: process.env.GATSBY_RZP_AUTH, // Use GATSBY_ prefix for client-side env vars
         order_id: orderData.id,
         one_click_checkout: true,
         name: "PROJECT FRIDAY",
@@ -249,3 +267,22 @@ const ProductPage = ({ pageContext }) => {
 };
 
 export default ProductPage;
+
+// Replace useStaticQuery with page query
+export const query = graphql`
+  query ProductPageQuery {
+    allFile(filter: { sourceInstanceName: { eq: "images" } }) {
+      nodes {
+        name
+        childImageSharp {
+          gatsbyImageData(width: 500)
+        }
+      }
+    }
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`;
