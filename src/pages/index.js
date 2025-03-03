@@ -118,7 +118,7 @@ const IndexPage = () => {
       </Helmet>
       <div className={styles.textCenter}>
         <StaticImage
-          src="../images/IMG_2359.jpeg"
+          src="../images/IMG_2359.jpg"
           loading="eager"
           quality={95}
           formats={["auto", "webp", "avif"]}

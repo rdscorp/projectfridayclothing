@@ -22,7 +22,7 @@ const IntroPopup = () => {
         <div style={styles.overlay}>
             <div className="introPopupClass" style={styles.popup}>
                 <StaticImage
-                    src="../images/IMG_2359.jpeg"
+                    src="../images/IMG_2359.jpg"
                     loading="eager"
                     quality={95}
                     formats={["auto", "webp", "avif"]}

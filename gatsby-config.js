@@ -19,7 +19,7 @@ module.exports = {
       resolve: `gatsby-plugin-sharp`,
       options: {
         defaults: {
-          formats: [`auto`, `webp`, `jpg`, `jpeg`], // **Removed `avif` to fix error**
+          formats: [`auto`, `webp`, `jpg`], // **Removed `avif` to fix error**
           placeholder: `dominantColor`,
           quality: 90,
         },
