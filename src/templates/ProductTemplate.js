@@ -6,12 +6,24 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 const ProductPage = ({ pageContext }) => {
   const { slug, title, price, compare_at_price, description, image, size, color } = pageContext.product;
 
-  const [cart, setCart] = useState(() => {
-    return JSON.parse(localStorage.getItem("cart")) || {};
-  });
+  const [cart, setCart] = useState({});
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedColor, setSelectedColor] = useState(null);
 
-  const [selectedSize, setSelectedSize] = useState(null)
-  const [selectedColor, setSelectedColor] = useState(null)
+  // Load cart from localStorage after component mounts
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedCart = JSON.parse(localStorage.getItem("cart")) || {};
+      setCart(storedCart);
+    }
+  }, []);
+
+  // Save cart to localStorage when it changes
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  }, [cart]);
 
   // Fetch all images
   const data = useStaticQuery(graphql`
@@ -53,14 +65,15 @@ const ProductPage = ({ pageContext }) => {
 
   // Handle Add to Cart
   const handleAddToCart = () => {
-    const newCart = { ...cart };
-    if (newCart[slug]) {
-      newCart[slug + "." + selectedColor + "." + selectedSize].qty += 1;
-    } else {
-      newCart[slug + "." + selectedColor + "." + selectedSize] = { name: title, compare_at_price, qty: 1 };
+    if (!selectedSize || !selectedColor) {
+      alert("Please select both a size and a color.");
+      return;
     }
+
+    const variantKey = `${slug}.${selectedColor}.${selectedSize}`;
+    const newCart = { ...cart, [variantKey]: { name: title, compare_at_price, qty: 1 } };
+
     setCart(newCart);
-    localStorage.setItem("cart", JSON.stringify(newCart));
     alert("Item added to cart!");
   };
 
