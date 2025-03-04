@@ -248,15 +248,15 @@ const ProductPage = ({ data, pageContext }) => {
       <footer style={{ marginTop: `var(--space-5)`, fontSize: `var(--font-sm)`, marginBottom: '20px', paddingLeft: '5vw', paddingRight: '5vw' }}>
         <div className="footer-div">
           <div id="collection" style={{ paddingTop: '20px', justifyContent: 'space-between', display: 'flex', alignItems: 'flex-start' }}>
-            <p className="logo-text" style={{ fontSize: `42px`, color: `var(--color-primary)` }}>PROJECT FRIDAY <sup>®</sup></p>
+            <a href="/" className="logo-text" style={{textDecoration:"none", fontSize: `42px`, color: `var(--color-primary)` }}>PROJECT FRIDAY <sup>®</sup></a>
           </div>
           <div>
             <p className="ftt">BORING STUFF</p>
             <p className="fbt">
-              <span>LEGAL NOTICE</span><br />
-              <span>PRIVACY POLICY</span><br />
-              <span>TERMS & CONDITIONS</span><br />
-            </p>
+                <a href="/privacy">LEGAL NOTICE</a><br />
+                <a href="/privacy">PRIVACY POLICY</a><br />
+                <a href="/terms">TERMS & CONDITIONS</a><br />
+              </p>
           </div>
           <div>
             <p className="ftt">SUPPORT</p>

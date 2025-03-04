@@ -8,65 +8,123 @@ import Seo from "../components/seo"
 import * as styles from "../components/index.module.css"
 import HoverImage from "../components/HoverImage"
 import useStock from "../../stock"
+import { addToCart } from "../utils/cartUtils"
 
 const links = [
   {
-    "text": "Friday Dreams",
-    "img": ["IMG_2762.jpg", "IMG_8092.jpg"],
-    "url": "/products/friday-dreams/",
-    "description": "A comfortable and stylish t-shirt, perfect for your Friday mood.",
-    "price": 1295
-  },
-  {
-    "text": "The Sword",
-    "img": ["IMG_2757.webp", "IMG_8102.jpg"],
-    "url": "/products/the-sword/",
-    "description": "A sharp and striking t-shirt design inspired by legendary warriors.",
-    "price": 1295
-  },
-  {
-    "text": "Trustissue",
-    "img": ["IMG_2760.webp", "IMG_8105.jpg"],
-    "url": "/products/trustissue/",
-    "description": "A bold statement piece for those who keep their circle small and real.",
-    "price": 1295
-  },
-  {
-    "text": "Meowtallica",
-    "img": ["IMG_2763.jpg", "IMG_8116.jpg"],
-    "url": "/products/meowtallica/",
+    "title": "Meowtallica",
+    "slug": "meowtallica",
+    "price": 1799,
+    "compare_at_price": 1295,
     "description": "A bold black t-shirt with a fierce feline-inspired heavy metal design.",
-    "price": 1295
+    "img": ["IMG_2763.jpg", "IMG_8116.jpg", "IMG_8114.jpg", "IMG_8115.jpg", "IMG_8117.jpg"],
+    "size": ["S", "M", "L"],
+    "color": "BLACK",
+    "weight": 1700,
+    "dimensions": { "length": 1700, "width": 1700, "height": 1700 },
+    "url": "/products/meowtallica/",
+    "imgURL": "https://i.postimg.cc/wvxj91wd/IMG-2763.jpg"
   },
   {
-    "text": "Fallen Angel",
-    "img": ["IMG_8111.jpg", "IMG_8109.jpg"],
-    "url": "/products/fallen-angel/",
-    "description": "A t-shirt that blends dark aesthetics with a rebellious spirit.",
-    "price": 1295
+    "title": "Friday Dreams",
+    "slug": "friday-dreams",
+    "price": 1799,
+    "compare_at_price": 1295,
+    "description": "A comfortable and stylish t-shirt, perfect for your Friday mood.",
+    "img": ["IMG_2762.jpg", "IMG_8092.jpg", "IMG_8090.jpg", "IMG_2359.jpg", "IMG_8091.jpg"],
+    "size": ["S", "M", "L"],
+    "color": "BLACK",
+    "weight": 1700,
+    "dimensions": { "length": 1700, "width": 1700, "height": 1700 },
+    "url": "/products/friday-dreams/",
+    "imgURL": "https://i.postimg.cc/3rSdJZMf/IMG-2762.jpg"
   },
   {
-    "text": "Gods Only Child",
-    "img": ["IMG_8094.jpg", "IMG_8096.jpg"],
-    "url": "/products/gods-only-child/",
+    "title": "Gods Only Child",
+    "slug": "gods-only-child",
+    "price": 1799,
+    "compare_at_price": 1295,
     "description": "A divine statement t-shirt for those who embrace their individuality.",
-    "price": 1295
+    "img": ["IMG_8094.jpg", "IMG_8096.jpg", "IMG_8095.jpg", "IMG_8097.jpg"],
+    "size": ["S", "M", "L"],
+    "color": "RED",
+    "weight": 1700,
+    "dimensions": { "length": 1700, "width": 1700, "height": 1700 },
+    "url": "/products/gods-only-child/",
+    "imgURL": "https://i.postimg.cc/28L8jR73/IMG-8094.jpg"
   },
   {
-    "text": "Gods Child",
-    "img": ["IMG_8120.jpg", "IMG_8118.jpg"],
-    "url": "/products/gods-child/",
-    "description": "A divine statement t-shirt for those who embrace their self.",
-    "price": 1295
+    "title": "The Sword",
+    "slug": "the-sword",
+    "price": 1799,
+    "compare_at_price": 1295,
+    "description": "A sharp and striking t-shirt design inspired by legendary warriors.",
+    "img": ["IMG_2757.webp", "IMG_8102.jpg", "IMG_8098.jpg", "IMG_8100.jpg", "IMG_8104.jpg"],
+    "size": ["S", "M", "L"],
+    "color": "WHITE",
+    "weight": 1700,
+    "dimensions": { "length": 1700, "width": 1700, "height": 1700 },
+    "url": "/products/the-sword/",
+    "imgURL": "https://i.postimg.cc/MKgH1Kpy/IMG-2757.webp"
   },
   {
-    "text": "Mastermind",
-    "img": ["IMG_8129.jpg", "IMG_8127.jpg"],
-    "url": "/products/mastermind/",
+    "title": "Trustissue",
+    "slug": "trustissue",
+    "price": 1799,
+    "compare_at_price": 1295,
+    "description": "A bold statement piece for those who keep their circle small and real.",
+    "img": ["IMG_2760.webp", "IMG_8105.jpg", "IMG_8106.jpg", "IMG_8107.jpg", "IMG_8108.jpg"],
+    "size": ["S", "M", "L"],
+    "color": "RED",
+    "weight": 1700,
+    "dimensions": { "length": 1700, "width": 1700, "height": 1700 },
+    "url": "/products/trustissue/",
+    "imgURL": "https://i.postimg.cc/HsrjJ7dY/IMG-2760.webp"
+  },
+  {
+    "title": "Fallen Angel",
+    "slug": "fallen-angel",
+    "price": 1799,
+    "compare_at_price": 1295,
+    "description": "A t-shirt that blends dark aesthetics with a rebellious spirit.",
+    "img": ["IMG_8111.jpg", "IMG_8109.jpg", "IMG_8110.jpg", "IMG_8112.jpg"],
+    "size": ["S", "M", "L"],
+    "color": "WHITE",
+    "weight": 1700,
+    "dimensions": { "length": 1700, "width": 1700, "height": 1700 },
+    "url": "/products/fallen-angel/",
+    "imgURL": "https://i.postimg.cc/0Qt2j94K/IMG-8111.jpg"
+  },
+  {
+    "title": "Mastermind",
+    "slug": "mastermind",
+    "price": 1799,
+    "compare_at_price": 1295,
     "description": "A strategic and stylish t-shirt for those who think three moves ahead.",
-    "price": 1295
+    "img": ["IMG_8129.jpg", "IMG_8127.jpg", "IMG_8128.jpg", "IMG_8130.jpg"],
+    "size": ["S", "M", "L"],
+    "color": "WHITE",
+    "weight": 1700,
+    "dimensions": { "length": 1700, "width": 1700, "height": 1700 },
+    "url": "/products/mastermind/",
+    "imgURL": "https://i.postimg.cc/jj4jVHQX/IMG-8129.jpg"
   },
+  {
+    "title": "Gods Child",
+    "slug": "gods-child",
+    "price": 1799,
+    "compare_at_price": 1295,
+    "description": "A divine statement t-shirt for those who embrace their self.",
+    "img": ["IMG_8120.jpg", "IMG_8118.jpg", "IMG_8119.jpg", "IMG_8121.jpg"],
+    "size": ["S", "M", "L"],
+    "color": "RED",
+    "weight": 1700,
+    "dimensions": { "length": 1700, "width": 1700, "height": 1700 },
+    "url": "/products/gods-child/",
+    "imgURL": "https://i.postimg.cc/J0vr3PM1/IMG-8120.jpg"
+  }
 ]
+
 
 const utmParameters = `?utm_source=starter&utm_medium=start-page&utm_campaign=default-starter`
 
@@ -99,6 +157,8 @@ const IndexPage = () => {
       })
     }
 
+
+
     const observer = new IntersectionObserver(observerCallback, observerOptions)
     sections.forEach(({ id }) => {
       const element = document.getElementById(id)
@@ -109,6 +169,23 @@ const IndexPage = () => {
 
     return () => observer.disconnect()
   }, [sections])
+
+  const handleAddToCart = (title, slug, price, compare_at_price, image, weight, dimensions, imgURL, color, size) => {
+    const variantKey = `${slug}.${color}.${size}`;
+    addToCart({
+      name: title,
+      slug: slug + "." + color + "." + size,
+      id: slug + "." + color + "." + size,
+      price: price,
+      image: image,
+      compare_at_price: compare_at_price,
+      qty: 1,
+      weight: weight,
+      dimensions: dimensions,
+      imgURL: imgURL,
+      prdURL: "https://projectfriday.in/products/" + slug,
+    });
+  };
 
   return (
     <Layout>
@@ -150,27 +227,32 @@ const IndexPage = () => {
         {links.map((link) => (
           <li key={link.url} className={styles.listItem}>
             <div className="image-container" style={{ width: "100%" }}>
-              <div style={{ position: "relative", display: "flex", justifySelf: "center" }}>
+              <div style={{
+                position: "relative", display: "flex", justifySelf: "center", overflow: "hidden",
+                width: "100%", justifyContent: "center",
+              }}>
                 <HoverImage dIpath={link.img[0]} hIpath={link.img[1]} />
               </div>
               <div className={styles.parentContainer}>
                 <span className={styles.atcb}>&nbsp;+</span>
                 <span className={styles.hoverPopup}>
-                  <span>S</span>
+                  <span onClick={() => handleAddToCart(link.title, link.slug, link.price, link.compare_at_price, link.img[0], link.weight, link.dimensions, link.imgURL, link.color, "S")} style={{ cursor: "pointer" }}>S</span>
                   <br />
-                  <span>M</span>
+                  <span onClick={() => handleAddToCart(link.title, link.slug, link.price, link.compare_at_price, link.img[0], link.weight, link.dimensions, link.imgURL, link.color, "M")} style={{ cursor: "pointer" }}>M</span>
                   <br />
-                  <span>L</span>
+                  <span onClick={() => handleAddToCart(link.title, link.slug, link.price, link.compare_at_price, link.img[0], link.weight, link.dimensions, link.imgURL, link.color, "L")} style={{ cursor: "pointer" }}>L</span>
                   <br />
                 </span>
+
               </div>
             </div>
             <span
               style={{
                 display: 'flex',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+                marginTop: '10px'
               }}><a className={styles.listItemLink} href={`${link.url}${utmParameters}`}>
-                {link.text}
+                {link.title}
               </a><span style={{ color: `var(--color-primary)` }}>₹{link.price}</span></span>
             <p className={styles.listItemDescription} style={{
               color: '#ffffff70'

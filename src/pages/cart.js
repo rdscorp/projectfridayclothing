@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { graphql, useStaticQuery } from "gatsby";
-import { getCartItems, removeFromCart, clearCart } from "../utils/cartUtils";
+import { getCartItems} from "../utils/cartUtils";
 
 function useRazorpayScript() {
     useEffect(() => {
@@ -175,7 +175,7 @@ const Cart = () => {
                             <div className="cart-item" key={key}>
                                 <GatsbyImage image={getImageByName(item.image)} alt={item.name} className="cart-item-image" />
                                 <div className="cart-item-info">
-                                    <h2>{item.name}</h2>
+                                    <a href={`/products/${item.slug.split('.')[0]}`} ><h2>{item.name}</h2></a>
                                     <p>{item.slug}</p>
                                     <p>Price: ₹{item.compare_at_price}</p>
                                     <p>Quantity: {item.qty}</p>

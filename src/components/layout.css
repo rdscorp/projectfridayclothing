@@ -242,6 +242,7 @@ pre tt:after {
 
 .logo-text {
   font-family: 'AdamCgProBold';
+  font-size: var(--font-sm);
 }
 
 .nav-text {
@@ -519,6 +520,9 @@ pre tt:after {
       display: block;
       color: #fff;
     }
+  }
+  .logo-text{
+    font-size: 11px;
   }
   .logoTextComponent{
     width: 100%;

@@ -87,7 +87,6 @@ const Header = ({ siteTitle }) => {
           <Link
             to="/#collection"
             style={{
-              fontSize: `var(--font-sm)`,
               textDecoration: `none`,
               color: `var(--color-secondary)`,
               padding: "5px",
@@ -102,7 +101,6 @@ const Header = ({ siteTitle }) => {
           <Link
             to="/#about"
             style={{
-              fontSize: `var(--font-sm)`,
               textDecoration: `none`,
               color: `var(--color-secondary)`,
               padding: "5px",
@@ -117,7 +115,6 @@ const Header = ({ siteTitle }) => {
           <Link
             to="/cart"
             style={{
-              fontSize: `var(--font-sm)`,
               textDecoration: `none`,
               color: `var(--color-secondary)`,
               padding: "5px",
