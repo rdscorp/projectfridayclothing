@@ -188,7 +188,7 @@ const ProductPage = ({ data, pageContext }) => {
             <GatsbyImage key={index} image={getImageByName(imgSrc)} alt={`${title} - Image ${index + 1}`} className="prodSubImage" style={{ marginBottom: "var(--space-3)" }} />
           ))}
           {image.slice(2).map((imgSrc, index) => (
-            <GatsbyImage key={index} image={getImageByName(imgSrc)} alt={`${title} - Image ${index + 1}`} className="prodSubImage1" style={{ marginBottom: "var(--space-3)" }} />
+            <GatsbyImage key={index} image={getImageByName(imgSrc)} alt={`${title} - Image ${index + 1}`} className="prodSubImage1" style={{ marginBottom: "var(--space-3)", display:"none" }} />
           ))}
           {/* Sub Images */}
           <div className="prodImgsSub">
