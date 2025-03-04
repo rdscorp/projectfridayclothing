@@ -7,14 +7,14 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 function useRazorpayScript() {
   useEffect(() => {
     if (typeof window === "undefined") return;
-    
+
     const script = document.createElement("script");
     script.src = "https://checkout.razorpay.com/v1/magic-checkout.js";
     script.async = true;
     script.onload = () => console.log("Razorpay script loaded successfully");
     script.onerror = () => console.error("Failed to load Razorpay script");
     document.body.appendChild(script);
-    
+
     return () => {
       if (document.body.contains(script)) {
         document.body.removeChild(script);
@@ -24,7 +24,7 @@ function useRazorpayScript() {
 }
 
 const ProductPage = ({ data, pageContext }) => {
-  const { slug, title, price, compare_at_price, description, image, size, color } = pageContext.product;
+  const { slug, title, price, compare_at_price, description, image, size, color, weight, dimensions, imgURL } = pageContext.product;
 
   const [cart, setCart] = useState({});
   const [selectedSize, setSelectedSize] = useState(null);
@@ -36,7 +36,7 @@ const ProductPage = ({ data, pageContext }) => {
   // Load cart from localStorage after component mounts
   useEffect(() => {
     if (typeof window === "undefined") return;
-    
+
     try {
       const storedCart = JSON.parse(localStorage.getItem("cart")) || {};
       setCart(storedCart);
@@ -49,7 +49,7 @@ const ProductPage = ({ data, pageContext }) => {
   // Save cart to localStorage when it changes
   useEffect(() => {
     if (typeof window === "undefined") return;
-    
+
     try {
       localStorage.setItem("cart", JSON.stringify(cart));
     } catch (error) {
@@ -66,33 +66,60 @@ const ProductPage = ({ data, pageContext }) => {
   };
 
   // Handle Add to Cart
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const savedCart = JSON.parse(localStorage.getItem("cart")) || {};
+      setCart(savedCart);
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
+
+
   const handleAddToCart = () => {
-    if (!selectedSize || !selectedColor) {
-      if (typeof window !== "undefined") {
-        alert("Please select both a size and a color.");
-      }
-      return;
-    }
-
-    const variantKey = `${slug}.${selectedColor}.${selectedSize}`;
-    const newCart = { ...cart, [variantKey]: { name: title, compare_at_price, qty: 1 } };
-
-    setCart(newCart);
-    
-    if (typeof window !== "undefined") {
-      alert("Item added to cart!");
-    }
-  };
-
-  // Handle Buy Now
-  const handlePayment = async () => {
-    if (typeof window === "undefined") return;
-    
     if (!selectedSize || !selectedColor) {
       alert("Please select both a size and a color.");
       return;
     }
-    
+    const cartData = localStorage.getItem("cart");
+    let cart = cartData ? JSON.parse(cartData) : {};
+
+    const variantKey = `${slug}.${selectedColor}.${selectedSize}`;
+
+    cart[variantKey] = {
+      name: title,
+      slug: slug + "." + selectedColor + "." + selectedSize,
+      price: price,
+      image: image[0],
+      compare_at_price: compare_at_price,
+      qty: (cart[variantKey]?.qty || 0) + 1,
+      weight: weight,
+      dimensions: dimensions,
+      imgURL: imgURL,
+      prdURL: "https://projectfriday.in/products/" + slug,
+    };
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    // ✅ Emit a storage event manually
+    window.dispatchEvent(new Event("storage"));
+  };
+
+
+
+  // Handle Buy Now
+  const handlePayment = async () => {
+    if (typeof window === "undefined") return;
+
+    if (!selectedSize || !selectedColor) {
+      alert("Please select both a size and a color.");
+      return;
+    }
+
     try {
       const orderResponse = await fetch("https://b4878270-razorpay-order-worker.projectfridayclothing.workers.dev", {
         method: "POST",
@@ -113,16 +140,12 @@ const ProductPage = ({ data, pageContext }) => {
               "offer_price": compare_at_price * 100,
               "tax_amount": 0,
               "quantity": 1,
-              "name": title,
+              "name": `${title} - ${selectedColor} - ${selectedSize}`,
               "description": `${title} - ${selectedColor} - ${selectedSize}`,
-              "weight": 1700,
-              "dimensions": {
-                "length": 1700,
-                "width": 1700,
-                "height": 1700
-              },
-              "image_url": "https://static.wixstatic.com/media/3cd432_19f118b4764444dc9046be1fecd5ed96~mv2.webp/v1/fill/w_1120,h_840,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/3cd432_19f118b4764444dc9046be1fecd5ed96~mv2.webp",
-              "product_url": "https://static.wixstatic.com/media/3cd432_19f118b4764444dc9046be1fecd5ed96~mv2.webp/v1/fill/w_1120,h_840,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/3cd432_19f118b4764444dc9046be1fecd5ed96~mv2.webp",
+              "weight": weight,
+              "dimensions": dimensions,
+              "image_url": imgURL,
+              "product_url": "https://projectfriday.in/products/" + slug,
               "notes": {}
             }
           ]
@@ -164,21 +187,27 @@ const ProductPage = ({ data, pageContext }) => {
   return (
     <>
       <Header siteTitle={data.site.siteMetadata?.title || "Title"} />
-      <div style={{ paddingTop: "150px", display: "flex" }}>
-        <div style={{ display: "flex", flexDirection: "column", flexWrap: "wrap", width: "63.5vw", height: "87vh", alignItems: "flex-start", justifyContent: "center", paddingLeft: "1vw", flexShrink: 0 }}>
+      <div
+        className="prodCont">
+        <div
+          className="prodImgs">
           {/* Main Product Image */}
-          {image.length > 0 && <GatsbyImage image={getImageByName(image[0])} alt={title} className="prodMainImage" style={{ marginBottom: "var(--space-3)", width: "30vw" }} />}
+          {image.length > 0 && <GatsbyImage image={getImageByName(image[0])} alt={title} className="prodMainImage" style={{ marginBottom: "var(--space-3)" }} />}
           {image.slice(1, 2).map((imgSrc, index) => (
-            <GatsbyImage key={index} image={getImageByName(imgSrc)} alt={`${title} - Image ${index + 1}`} className="prodSubImage" style={{ marginBottom: "var(--space-3)", width: "30vw" }} />
+            <GatsbyImage key={index} image={getImageByName(imgSrc)} alt={`${title} - Image ${index + 1}`} className="prodSubImage" style={{ marginBottom: "var(--space-3)" }} />
+          ))}
+          {image.slice(2).map((imgSrc, index) => (
+            <GatsbyImage key={index} image={getImageByName(imgSrc)} alt={`${title} - Image ${index + 1}`} className="prodSubImage1" style={{ marginBottom: "var(--space-3)" }} />
           ))}
           {/* Sub Images */}
-          <div style={{ display: "flex", gap: "1vw", flexWrap: "wrap" }}>
+          <div className="prodImgsSub">
             {image.slice(2).map((imgSrc, index) => (
-              <GatsbyImage key={index} image={getImageByName(imgSrc)} alt={`${title} - Image ${index + 1}`} className="prodMainImage" style={{ marginBottom: "var(--space-3)", width: "14.5vw" }} />
+              <GatsbyImage key={index} image={getImageByName(imgSrc)} alt={`${title} - Image ${index + 1}`} className="prodMainImage1" style={{ marginBottom: "var(--space-3)" }} />
             ))}
           </div>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", paddingLeft: "5vw", marginTop: "60px", position: "relative", width: "32vw" }}>
+        <div
+          className="prodDets">
           <h1 style={{ color: "var(--color-primary)", fontFamily: "AdamCgPro", fontSize: "40px" }}>{title}</h1>
           <p style={{ fontSize: "34px", color: "var(--color-primary)" }}>
             <s style={{ color: "#ffffffaa" }}>₹{price}</s>&nbsp;&nbsp;₹{compare_at_price}
