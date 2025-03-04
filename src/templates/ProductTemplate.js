@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { graphql } from "gatsby";
 import Header from "../components/header";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { addToCart } from "../utils/cartUtils";
 
 // Custom hook for Razorpay script loading
 function useRazorpayScript() {
@@ -79,20 +80,16 @@ const ProductPage = ({ data, pageContext }) => {
     };
   }, []);
 
-
   const handleAddToCart = () => {
     if (!selectedSize || !selectedColor) {
       alert("Please select both a size and a color.");
       return;
     }
-    const cartData = localStorage.getItem("cart");
-    let cart = cartData ? JSON.parse(cartData) : {};
-
     const variantKey = `${slug}.${selectedColor}.${selectedSize}`;
-
-    cart[variantKey] = {
+    addToCart({
       name: title,
       slug: slug + "." + selectedColor + "." + selectedSize,
+      id: slug + "." + selectedColor + "." + selectedSize,
       price: price,
       image: image[0],
       compare_at_price: compare_at_price,
@@ -101,14 +98,8 @@ const ProductPage = ({ data, pageContext }) => {
       dimensions: dimensions,
       imgURL: imgURL,
       prdURL: "https://projectfriday.in/products/" + slug,
-    };
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-    // ✅ Emit a storage event manually
-    window.dispatchEvent(new Event("storage"));
+    });
   };
-
 
 
   // Handle Buy Now

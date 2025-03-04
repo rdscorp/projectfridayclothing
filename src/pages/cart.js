@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
-import { CartContext } from "../context/cartContext";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { graphql, useStaticQuery } from "gatsby";
+import { getCartItems, removeFromCart, clearCart } from "../utils/cartUtils";
 
 function useRazorpayScript() {
     useEffect(() => {
@@ -25,7 +25,16 @@ function useRazorpayScript() {
   }
 
 const Cart = () => {
-    const { cartItems, setCartItems } = useContext(CartContext);
+    const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    setCartItems(getCartItems());
+
+    const updateCart = () => setCartItems(getCartItems());
+    window.addEventListener("cartUpdated", updateCart);
+
+    return () => window.removeEventListener("cartUpdated", updateCart);
+  }, []);
     const [cart, setCart] = useState([]);
 
     // ✅ Fetch images at the component level

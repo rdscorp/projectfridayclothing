@@ -1,9 +1,20 @@
 import * as React from "react";
 import { Link } from "gatsby";
-import { CartContext } from "../context/cartContext";
+import { getTotalQuantity } from "../utils/cartUtils";
 
 const Header = ({ siteTitle }) => {
-  const { cartItems } = React.useContext(CartContext);
+  const [cartItems, setCartQuantity] = React.useState(0);
+
+  React.useEffect(() => {
+    const updateCartQuantity = () => {
+      setCartQuantity(getTotalQuantity());
+    };
+
+    updateCartQuantity(); // Initial load
+    window.addEventListener("cartUpdated", updateCartQuantity);
+
+    return () => window.removeEventListener("cartUpdated", updateCartQuantity);
+  }, []);
 
 
 

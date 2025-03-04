@@ -42,7 +42,6 @@ module.exports = {
     },
   ],
   flags: {
-    FAST_DEV: true,
-    DEV_SSR: false,  // Ensure SSR is disabled in development
+    DEV_SSR: true,  // Ensure SSR is disabled in development
   }
 }

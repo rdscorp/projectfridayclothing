@@ -28,10 +28,12 @@ const HoverImage = ({ dIpath, hIpath }) => {
   return (
     <div className="image-container">
       {defaultImg && <GatsbyImage image={defaultImg} alt="Default" className="default-image" style={{
-        position: "absolute"
+        position: "absolute",
+        aspectRatio: "12/15"
       }} />}
       {hoverImg && <GatsbyImage image={hoverImg} alt="Hover" className="hover-image" style={{
-        position: "absolute"
+        position: "absolute",
+        aspectRatio: "12/15"
       }} />}
     </div>
   );
