@@ -188,7 +188,7 @@ const ProductPage = ({ data, pageContext }) => {
             <GatsbyImage key={index} image={getImageByName(imgSrc)} alt={`${title} - Image ${index + 1}`} className="prodSubImage" style={{ marginBottom: "var(--space-3)" }} />
           ))}
           {image.slice(2).map((imgSrc, index) => (
-            <GatsbyImage key={index} image={getImageByName(imgSrc)} alt={`${title} - Image ${index + 1}`} className="prodSubImage1" style={{ marginBottom: "var(--space-3)", display:"none" }} />
+            <GatsbyImage key={index} image={getImageByName(imgSrc)} alt={`${title} - Image ${index + 1}`} className="prodSubImage1" style={{ marginBottom: "var(--space-3)", display: "none" }} />
           ))}
           {/* Sub Images */}
           <div className="prodImgsSub">
@@ -240,7 +240,7 @@ const ProductPage = ({ data, pageContext }) => {
           <button style={{ background: "#FFF", width: "100%", height: "50px", outline: "none", border: "none", fontSize: "18px", marginTop: "10px", cursor: "pointer" }} onClick={handleAddToCart}>
             ADD TO CART
           </button>
-          <p style={{ marginTop: "30px" }}>{description}</p>
+          <GatsbyImage image={getImageByName('pfas1.png')} style={{ marginTop: "var(--space-3)", marginBottom: "var(--space-3)" }} />
         </div>
       </div>
 
@@ -248,15 +248,15 @@ const ProductPage = ({ data, pageContext }) => {
       <footer style={{ marginTop: `var(--space-5)`, fontSize: `var(--font-sm)`, marginBottom: '20px', paddingLeft: '5vw', paddingRight: '5vw' }}>
         <div className="footer-div">
           <div id="collection" style={{ paddingTop: '20px', justifyContent: 'space-between', display: 'flex', alignItems: 'flex-start' }}>
-            <a href="/" className="logo-text" style={{textDecoration:"none", fontSize: `42px`, color: `var(--color-primary)` }}>PROJECT FRIDAY <sup>®</sup></a>
+            <a href="/" className="logo-text" style={{ textDecoration: "none", fontSize: `42px`, color: `var(--color-primary)` }}>PROJECT FRIDAY <sup>®</sup></a>
           </div>
           <div>
             <p className="ftt">BORING STUFF</p>
             <p className="fbt">
-                <a href="/privacy">LEGAL NOTICE</a><br />
-                <a href="/privacy">PRIVACY POLICY</a><br />
-                <a href="/terms">TERMS & CONDITIONS</a><br />
-              </p>
+              <a href="/privacy">LEGAL NOTICE</a><br />
+              <a href="/privacy">PRIVACY POLICY</a><br />
+              <a href="/terms">TERMS & CONDITIONS</a><br />
+            </p>
           </div>
           <div>
             <p className="ftt">SUPPORT</p>

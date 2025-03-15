@@ -109,9 +109,19 @@
 .hoverPopup:hover {
   display: block;
 }
+.aboutImage{
+  margin-bottom: var(--space-3);
+  width: 25%;
+  border: 10px solid #fff;
+}
 
 @media (max-width: 768px) {
   .list {
     place-content: center;
+  }
+  .aboutImage{
+    margin-bottom: var(--space-3);
+    width: 25%;
+    border: 3px solid #fff;
   }
 }

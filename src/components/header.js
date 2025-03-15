@@ -47,13 +47,12 @@ const Header = ({ siteTitle }) => {
         }}
       >
         <header
-          className="logoTextComponent"
+          className="logoTextComponentMain"
           style={{
             margin: `0 auto`,
             padding: `var(--space-4) var(--size-gutter)`,
             display: `flex`,
             alignItems: `center`,
-            justifyContent: `flex-start`,
             paddingLeft: `5vw`,
             width: "100vw",
             paddingTop: "32px",
@@ -62,11 +61,10 @@ const Header = ({ siteTitle }) => {
           <Link
             to="/"
             style={{
-              fontSize: `var(--font-lt)`,
               textDecoration: `none`,
               color: `var(--color-secondary)`,
             }}
-            className="logo-text"
+            className="logo-title-text"
           >
             PROJECT FRIDAY
           </Link>

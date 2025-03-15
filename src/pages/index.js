@@ -253,10 +253,7 @@ const IndexPage = () => {
                 marginTop: '10px'
               }}><a className={styles.listItemLink} href={`${link.url}${utmParameters}`}>
                 {link.title}
-              </a><span style={{ color: `var(--color-primary)` }}>₹{link.price}</span></span>
-            <p className={styles.listItemDescription} style={{
-              color: '#ffffff70'
-            }}>{link.description}</p>
+              </a><span style={{ color: `var(--color-primary)` }}><s style={{ color: `#ffffff90` }}>₹{link.price}</s> ₹{link.compare_at_price}</span></span>
           </li>
         ))}
       </ul>
@@ -295,11 +292,7 @@ const IndexPage = () => {
             quality={95}
             formats={["auto", "webp", "avif"]}
             alt=""
-            style={{
-              marginBottom: `var(--space-3)`,
-              width: "25%",
-              border: '#fff solid 10px'
-            }}
+            className="aboutImage"
           />
           <StaticImage
             src="../images/IMG_1550.jpg"
@@ -307,11 +300,7 @@ const IndexPage = () => {
             quality={95}
             formats={["auto", "webp", "avif"]}
             alt=""
-            style={{
-              marginBottom: `var(--space-3)`,
-              width: "25%",
-              border: '#fff solid 10px'
-            }}
+            className="aboutImage"
           />
 
           <StaticImage
@@ -320,11 +309,7 @@ const IndexPage = () => {
             quality={95}
             formats={["auto", "webp", "avif"]}
             alt=""
-            style={{
-              marginBottom: `var(--space-3)`,
-              width: "25%",
-              border: '#fff solid 10px'
-            }}
+            className="aboutImage"
           />
         </div>
         <h3 style={{ width: "100%" }}>

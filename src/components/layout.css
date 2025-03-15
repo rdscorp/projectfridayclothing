@@ -244,6 +244,15 @@ pre tt:after {
   font-family: 'AdamCgProBold';
   font-size: var(--font-sm);
 }
+.logoTextComponentMain{
+  justify-content: flex-start;
+}
+.logo-title-text {
+  font-family: 'AdamCgProBold';
+  font-size: var(--font-lt);
+  color: var(--color-secondary);
+  text-decoration: none;
+}
 
 .nav-text {
   font-family: 'AdamCgPro';
@@ -431,6 +440,15 @@ pre tt:after {
 @media (max-width: 768px) {
   .cart-item{
     display: flex;
+  }
+  .logo-title-text {
+    font-family: 'AdamCgProBold';
+    font-size: 19px;
+    color: var(--color-secondary);
+    text-decoration: none;
+  }
+  .logoTextComponentMain{
+    justify-content: center;
   }
   .cart-items{
     display: flex;
