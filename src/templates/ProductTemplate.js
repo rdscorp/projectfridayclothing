@@ -356,9 +356,6 @@ const ProductPage = ({ data, pageContext }) => {
           }}>
             <StaticImage style={{
               width: '60px', height: 'auto'
-            }} src="../images/upi-icon.svg" alt="Logo" />
-            <StaticImage style={{
-              width: '60px', height: 'auto'
             }} src="../images/amex-svgrepo-com.svg" alt="Logo" />
             <StaticImage style={{
               width: '60px', height: 'auto'
