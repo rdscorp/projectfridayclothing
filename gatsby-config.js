@@ -17,6 +17,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-image`,
+    `gatsby-plugin-svgr`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -40,6 +41,16 @@ module.exports = {
         icon: `src/images/favicon-32x32.jpg`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: "gatsby-plugin-google-fonts",
+      options: {
+        fonts: [
+          "Material+Icons"
+        ],
+        display: "swap",
+      },
+    }
+    
   ],
   flags: {
     FAST_DEV: true,

@@ -36,6 +36,7 @@ html {
   line-height: var(--line-height-normal);
   overflow-y: scroll;
 }
+
 body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -107,6 +108,9 @@ hr {
   background: hsla(0, 0%, 0%, 0.2);
   border: none;
   height: 1px;
+}
+a{
+  text-decoration: none;
 }
 * {
   box-sizing: inherit;
@@ -266,12 +270,12 @@ pre tt:after {
 .ftt{
   font-family: 'AdamCgPro';
   font-weight: bold;
-  font-size: 15px;
+  font-size: 11px;
   color: #ffffff90;
 }
 .fbt{
   font-family: 'AdamCgPro';
-  font-size: 13px;
+  font-size: 11px;
   color: #ffffffaa;
   span{
     cursor: pointer;
@@ -437,6 +441,10 @@ pre tt:after {
     text-transform: uppercase;
   }
 }
+.logo-text-bottom{
+  font-size: 28.5px;
+  font-family: 'AdamCgProBold';
+}
 @media (max-width: 768px) {
   .cart-item{
     display: flex;
@@ -577,6 +585,11 @@ pre tt:after {
     display: flex;
     flex-wrap: wrap;
     padding-bottom: 30px;
+  }
+  .logo-text-bottom{
+    font-size: 24px;
+    margin-bottom: 25px;
+    font-family: 'AdamCgProBold';
   }
   .eib{
     height: 40px;

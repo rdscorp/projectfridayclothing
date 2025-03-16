@@ -43,7 +43,7 @@ const Layout = ({ children }) => {
         >
           <div className="footer-div">
             <div id="collection" style={{ paddingTop: '20px', justifyContent: 'space-between', display: 'flex', alignItems:'flex-start' }} >
-              <a href="/" className="logo-text" style={{ textDecoration:"none",fontSize: `42px`, color: `var(--color-primary)` }}>PROJECT FRIDAY <sup>®</sup></a>
+              <a href="/" className="logo-text-bottom" style={{ textDecoration:"none",fontSize: `42px`, color: `var(--color-primary)` }}>PROJECT FRIDAY <sup>®</sup></a>
             </div>
             <div>
               <p className="ftt">BORING STUFF</p>
@@ -55,10 +55,10 @@ const Layout = ({ children }) => {
             </div>
             <div>
               <p className="ftt">SUPPORT</p>
-              <p className="fbt"><span>RETURNS</span><br />
-                <span>ORDER TRACKING</span><br />
-                <span>FAQ</span><br />
-                <span>CONTACT</span><br />
+              <p className="fbt"><a>RETURNS</a><br />
+                <a>ORDER TRACKING</a><br />
+                <a>FAQ</a><br />
+                <a>CONTACT</a><br />
               </p>
             </div>
             <div>

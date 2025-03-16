@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { graphql } from "gatsby";
 import Header from "../components/header";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
 import { addToCart } from "../utils/cartUtils";
-
+import { Link } from "gatsby";
 // Custom hook for Razorpay script loading
 function useRazorpayScript() {
   useEffect(() => {
@@ -30,7 +30,8 @@ const ProductPage = ({ data, pageContext }) => {
   const [cart, setCart] = useState({});
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
-
+  const [showSizeChart, setShowSizeChart] = useState(false);
+  const [AddedToCart, setAddedToCart] = useState(false);
   // Load Razorpay script
   useRazorpayScript();
 
@@ -99,6 +100,7 @@ const ProductPage = ({ data, pageContext }) => {
       imgURL: imgURL,
       prdURL: "https://projectfriday.in/products/" + slug,
     });
+    setAddedToCart(true);
   };
 
 
@@ -177,6 +179,78 @@ const ProductPage = ({ data, pageContext }) => {
 
   return (
     <>
+      {showSizeChart ?
+        <div style={{
+          width: '100%',
+          height: '100%',
+          position: 'fixed',
+          zIndex: '100',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: '#000000aa'
+        }}>
+          <div style={{
+            display: "flex", gap: "20px", width: "500px", flexDirection: 'column',
+            backdropFilter: 'blur(1rem)', backgroundColor: '#056D63', borderRadius: '10px',
+            border: '4px white solid',
+            alignSelf: 'center',
+            justifySelf: 'center'
+          }}>
+            <p style={{
+              color: 'white', fontSize: '24px', textAlign: 'center', marginTop: '20px', marginBottom: '0px',
+              fontFamily: 'AdamCgPro'
+            }}>Size Chart</p>
+            <GatsbyImage image={getImageByName('pfc-sizechart.png')} style={{ width: '100%', height: 'auto' }} />
+            <button onClick={() => { setShowSizeChart(false) }} style={{
+              background: 'transparent', marginBottom: '15px', textDecoration: 'underline', color: 'white', border: 'none', outline: 'none', cursor: 'pointer'
+            }}>Close</button>
+          </div>
+        </div> : null}
+      {AddedToCart ?
+        <div style={{
+          width: '100%',
+          height: '100%',
+          position: 'fixed',
+          zIndex: '100',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: '#000000aa'
+        }}>
+          <div style={{
+            display: "flex", gap: "20px", width: "500px", flexDirection: 'column',
+            backdropFilter: 'blur(1rem)', backgroundColor: '#056D63', borderRadius: '10px',
+            border: '4px white solid',
+            alignSelf: 'center',
+            justifySelf: 'center'
+          }}>
+            <p style={{
+              color: 'white', fontSize: '24px', textAlign: 'center', marginTop: '20px', marginBottom: '0px',
+              fontFamily: 'AdamCgPro'
+            }}>Item added to the cart</p>
+            <div style={{
+              display: 'flex'
+            }}>
+              <GatsbyImage image={getImageByName(image[0])} style={{
+                marginTop: "var(--space-3)",
+                marginBottom: "var(--space-3)", aspectRatio: '9/11', width: '250px'
+              }} />
+              <GatsbyImage image={getImageByName(image[1])} style={{
+                marginTop: "var(--space-3)",
+                marginBottom: "var(--space-3)", aspectRatio: '9/11', width: '250px'
+              }} />
+            </div>
+            <Link to="/cart" style={{
+              background: 'black', marginBottom: '15px', textDecoration: 'none', color: 'white', border: 'none', outline: 'none', cursor: 'pointer',
+              height: '50px', fontFamily: 'AdamCgPro', fontSize: '20px',
+              display: 'flex', justifyContent: 'center', alignItems: 'center'
+            }}>GO TO CART</Link>
+            <button onClick={() => { setAddedToCart(false) }} style={{
+              background: 'transparent', marginBottom: '15px', textDecoration: 'underline', color: 'white', border: 'none', outline: 'none', cursor: 'pointer'
+            }}>Close</button>
+          </div>
+        </div> : null}
       <Header siteTitle={data.site.siteMetadata?.title || "Title"} />
       <div
         className="prodCont">
@@ -199,10 +273,41 @@ const ProductPage = ({ data, pageContext }) => {
         </div>
         <div
           className="prodDets">
-          <h1 style={{ color: "var(--color-primary)", fontFamily: "AdamCgPro", fontSize: "40px" }}>{title}</h1>
-          <p style={{ fontSize: "34px", color: "var(--color-primary)" }}>
-            <s style={{ color: "#ffffffaa" }}>₹{price}</s>&nbsp;&nbsp;₹{compare_at_price}
+          <h1 style={{ color: "var(--color-primary)", fontFamily: "AdamCgPro", fontSize: "25px", marginBottom: '15px' }}>{title}</h1>
+          <span style={{
+            display: "flex", gap: "5px", alignItems: "center", color: "gray", fontSize: "20px", marginBottom: '15px'
+          }}>
+            <span style={{ color: 'gray' }} className="material-icons">star</span>
+            <span className="material-icons">star</span>
+            <span className="material-icons">star</span>
+            <span className="material-icons">star</span>
+            <span className="material-icons">star</span>
+            <p style={{
+              fontSize: '13px'
+            }}>(0) reviews</p>
+          </span>
+          <p style={{ fontSize: "22px", color: "var(--color-primary)" }}>
+            <s style={{ color: "#ffffffaa" }}>₹{price}</s>&nbsp;&nbsp;<span style={{
+              color: "#FF4E4E", fontWeight: 'bold'
+            }}>₹{compare_at_price}&nbsp;&nbsp;&nbsp;<sup><sup><span style={{
+              color: "white", background: '#29BF4C', borderRadius: '100px', fontSize: '13px',
+              padding: '2px 10px', fontWeight: 'normal'
+            }}>SAVE ₹{price - compare_at_price}</span></sup></sup></span>
           </p>
+          <span style={{
+            display: "flex", gap: "5px", alignItems: "center", color: "gray", fontSize: "20px",
+            marginBottom: '15px'
+          }}>
+            <span style={{
+              color: '#FFB829',
+              fontSize: '10px',
+              lineHeight: '10px',
+            }} className="material-icons">circle</span>
+            <span style={{
+              fontSize: '15px',
+              color: '#FFB829'
+            }}>Only few items left.</span>
+          </span>
           <div style={{ display: "flex", gap: "20px", width: "50%", justifyContent: "space-between" }}>
             {size.map((prodSize, index) => (
               selectedSize !== prodSize ?
@@ -234,21 +339,74 @@ const ProductPage = ({ data, pageContext }) => {
                 </button>
             ))}
           </div>
+          <button onClick={() => { setShowSizeChart(true) }} style={{
+            background: 'transparent', textDecoration: 'underline', color: 'white', border: 'none', outline: 'none', cursor: 'pointer',
+            width: 'fit-content', height: '30px', borderRadius: '5px', fontWeight: 'bold',
+            marginTop: '10px',
+          }}>Show Size Chart</button>
           <button style={{ background: "#056D63", width: "100%", height: "50px", outline: "none", border: "none", fontSize: "18px", color: "#fff", marginTop: "30px", cursor: "pointer" }} onClick={handlePayment}>
             BUY NOW
           </button>
           <button style={{ background: "#FFF", width: "100%", height: "50px", outline: "none", border: "none", fontSize: "18px", marginTop: "10px", cursor: "pointer" }} onClick={handleAddToCart}>
             ADD TO CART
           </button>
+          <div style={{
+            height: 'auto', display: 'flex', alignItems: 'center', marginTop: '20px',
+            gap: '10px'
+          }}>
+            <StaticImage style={{
+              width: '60px', height: 'auto'
+            }} src="../images/upi-icon.svg" alt="Logo" />
+            <StaticImage style={{
+              width: '60px', height: 'auto'
+            }} src="../images/amex-svgrepo-com.svg" alt="Logo" />
+            <StaticImage style={{
+              width: '60px', height: 'auto'
+            }} src="../images/google-pay-svgrepo-com.svg" alt="Logo" />
+            <StaticImage style={{
+              width: '60px', height: 'auto'
+            }} src="../images/jcb-svgrepo-com.svg" alt="Logo" />
+            <StaticImage style={{
+              width: '60px', height: 'auto'
+            }} src="../images/mastercard-full-svgrepo-com.svg" alt="Logo" />
+            <StaticImage style={{
+              width: '60px', height: 'auto'
+            }} src="../images/visa-classic-svgrepo-com.svg" alt="Logo" />
+            <StaticImage style={{
+              width: '100px', height: '30px'
+            }} src="../images/cod.svg" alt="Logo" />
+          </div>
           <GatsbyImage image={getImageByName('pfas1.png')} style={{ marginTop: "var(--space-3)", marginBottom: "var(--space-3)" }} />
+          <p style={{
+            fontSize: '11px', color: 'white', fontFamily: 'AdamCgPro'
+          }}>Experience the perfect combination of style and comfort with <strong>Project Friday</strong>'s premium oversized T-shirts. Designed for a relaxed yet stylish look, our T-shirts are crafted from high-quality 240gsm fabric, ensuring durability and a soft feel.</p>
+
+          <ul style={{
+            fontSize: '11px', color: 'white', fontFamily: 'AdamCgPro'
+          }}>
+            <li><strong>Oversized Fit</strong> – A relaxed and trendy silhouette for all-day comfort.</li>
+            <li><strong>Premium 240gsm Fabric</strong> – Thick, high-quality cotton for a soft and structured feel.</li>
+            <li><strong>Wrinkle-Free</strong> – Keeps its fresh look with minimal effort.</li>
+            <li><strong>Versatile Style</strong> – Perfect for casual, streetwear, or layered outfits.</li>
+            <li><strong>Long-Lasting Durability</strong> – Made to withstand everyday wear.</li>
+            <li><strong>Odor-Resistant</strong> – Breathable fabric helps keep you fresh throughout the day.</li>
+          </ul>
+
+          <p style={{
+            fontSize: '11px', color: 'white', fontFamily: 'AdamCgPro'
+          }}>The model is 185cm (6ft1) and is wearing a size Medium for an oversized fit.</p>
+
+          <p style={{
+            fontSize: '11px', color: 'white', fontFamily: 'AdamCgPro'
+          }}><strong>Shipping Information:</strong> Orders to <strong>North India</strong> are delivered within <strong>1-2 days</strong>, while orders to <strong>East and South India</strong> take <strong>3-4 days</strong>.</p>
+
         </div>
       </div>
-
       {/* Footer */}
       <footer style={{ marginTop: `var(--space-5)`, fontSize: `var(--font-sm)`, marginBottom: '20px', paddingLeft: '5vw', paddingRight: '5vw' }}>
         <div className="footer-div">
           <div id="collection" style={{ paddingTop: '20px', justifyContent: 'space-between', display: 'flex', alignItems: 'flex-start' }}>
-            <a href="/" className="logo-text" style={{ textDecoration: "none", fontSize: `42px`, color: `var(--color-primary)` }}>PROJECT FRIDAY <sup>®</sup></a>
+            <a href="/" className="logo-text-bottom" style={{ textDecoration: "none", color: `var(--color-primary)` }}>PROJECT FRIDAY <sup>®</sup></a>
           </div>
           <div>
             <p className="ftt">BORING STUFF</p>
@@ -261,10 +419,10 @@ const ProductPage = ({ data, pageContext }) => {
           <div>
             <p className="ftt">SUPPORT</p>
             <p className="fbt">
-              <span>RETURNS</span><br />
-              <span>ORDER TRACKING</span><br />
-              <span>FAQ</span><br />
-              <span>CONTACT</span><br />
+              <a>RETURNS</a><br />
+              <a>ORDER TRACKING</a><br />
+              <a>FAQ</a><br />
+              <a>CONTACT</a><br />
             </p>
           </div>
           <div>

@@ -2,7 +2,7 @@ import * as React from "react"
 import { useState, useEffect } from "react"
 import { Helmet } from "react-helmet"
 import { StaticImage } from "gatsby-plugin-image"
-
+import { Link } from "gatsby";
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import * as styles from "../components/index.module.css"
@@ -227,12 +227,14 @@ const IndexPage = () => {
         {links.map((link) => (
           <li key={link.url} className={styles.listItem}>
             <div className="image-container" style={{ width: "100%" }}>
-              <div style={{
+              <Link 
+              to={link.url}
+              style={{
                 position: "relative", display: "flex", justifySelf: "center", overflow: "hidden",
                 width: "100%", justifyContent: "center",
               }}>
                 <HoverImage dIpath={link.img[0]} hIpath={link.img[1]} />
-              </div>
+              </Link>
               <div className={styles.parentContainer}>
                 <span className={styles.atcb}>&nbsp;+</span>
                 <span className={styles.hoverPopup}>
@@ -253,7 +255,9 @@ const IndexPage = () => {
                 marginTop: '10px'
               }}><a className={styles.listItemLink} href={`${link.url}${utmParameters}`}>
                 {link.title}
-              </a><span style={{ color: `var(--color-primary)` }}><s style={{ color: `#ffffff90` }}>₹{link.price}</s> ₹{link.compare_at_price}</span></span>
+              </a><span style={{ color: `var(--color-primary)`, }}><s style={{ color: `#ffffff90` }}>₹{link.price}</s> <span style={{
+                color:'#FF4E4E', fontWeight: 'bold'
+              }}>₹{link.compare_at_price}</span></span></span>
           </li>
         ))}
       </ul>
