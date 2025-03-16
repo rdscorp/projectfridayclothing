@@ -225,8 +225,8 @@ const IndexPage = () => {
       </div>
       <ul className={styles.list}>
         {links.map((link) => (
-          <Link to={link.url} key={link.url} className={styles.listItem}>
-            <Link to={link.url} className="image-container" style={{ width: "100%" }}>
+          <li to={link.url} key={link.url} className={styles.listItem}>
+            <div className="image-container" style={{ width: "100%" }}>
               <Link 
               to={link.url}
               style={{
@@ -247,7 +247,7 @@ const IndexPage = () => {
                 </span>
 
               </div>
-            </Link>
+            </div>
             <span
               style={{
                 display: 'flex',
@@ -258,7 +258,7 @@ const IndexPage = () => {
               </a><span style={{ color: `var(--color-primary)`, }}><s style={{ color: `#ffffff90` }}>₹{link.price}</s> <span style={{
                 color:'#FF4E4E', fontWeight: 'bold'
               }}>₹{link.compare_at_price}</span></span></span>
-          </Link>
+          </li>
         ))}
       </ul>
       {/* About Section */}
