@@ -225,8 +225,8 @@ const IndexPage = () => {
       </div>
       <ul className={styles.list}>
         {links.map((link) => (
-          <li key={link.url} className={styles.listItem}>
-            <div className="image-container" style={{ width: "100%" }}>
+          <Link to={link.url} key={link.url} className={styles.listItem}>
+            <Link to={link.url} className="image-container" style={{ width: "100%" }}>
               <Link 
               to={link.url}
               style={{
@@ -247,7 +247,7 @@ const IndexPage = () => {
                 </span>
 
               </div>
-            </div>
+            </Link>
             <span
               style={{
                 display: 'flex',
@@ -258,7 +258,7 @@ const IndexPage = () => {
               </a><span style={{ color: `var(--color-primary)`, }}><s style={{ color: `#ffffff90` }}>₹{link.price}</s> <span style={{
                 color:'#FF4E4E', fontWeight: 'bold'
               }}>₹{link.compare_at_price}</span></span></span>
-          </li>
+          </Link>
         ))}
       </ul>
       {/* About Section */}
@@ -316,7 +316,7 @@ const IndexPage = () => {
             className="aboutImage"
           />
         </div>
-        <h3 style={{ width: "100%" }}>
+        <h3 style={{ width: "100%", fontFamily:'AdamCgPro', fontSize:'11px' }}>
           Welcome to PROJECT FRIDAY, where fashion meets individuality, and every piece tells a story.
           Based in the heart of Jaipur, India, we are a lifestyle apparel brand that redefines contemporary
           fashion with a touch of boldness, creativity, and authenticity. Our philosophy is simple—style
