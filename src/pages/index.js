@@ -15,7 +15,7 @@ const links = [
     "title": "Meowtallica",
     "slug": "meowtallica",
     "price": 1799,
-    "compare_at_price": 1295,
+    "compare_at_price": 1399,
     "description": "A bold black t-shirt with a fierce feline-inspired heavy metal design.",
     "img": ["IMG_2763.jpg", "IMG_8116.jpg", "IMG_8114.jpg", "IMG_8115.jpg", "IMG_8117.jpg"],
     "size": ["S", "M", "L"],
@@ -29,7 +29,7 @@ const links = [
     "title": "Friday Dreams",
     "slug": "friday-dreams",
     "price": 1799,
-    "compare_at_price": 1295,
+    "compare_at_price": 1399,
     "description": "A comfortable and stylish t-shirt, perfect for your Friday mood.",
     "img": ["IMG_2762.jpg", "IMG_8092.jpg", "IMG_8090.jpg", "IMG_2359.jpg", "IMG_8091.jpg"],
     "size": ["S", "M", "L"],
@@ -43,7 +43,7 @@ const links = [
     "title": "Gods Only Child",
     "slug": "gods-only-child",
     "price": 1799,
-    "compare_at_price": 1295,
+    "compare_at_price": 1399,
     "description": "A divine statement t-shirt for those who embrace their individuality.",
     "img": ["IMG_8094.jpg", "IMG_8096.jpg", "IMG_8095.jpg", "IMG_8097.jpg"],
     "size": ["S", "M", "L"],
@@ -57,11 +57,11 @@ const links = [
     "title": "The Sword",
     "slug": "the-sword",
     "price": 1799,
-    "compare_at_price": 1295,
+    "compare_at_price": 1399,
     "description": "A sharp and striking t-shirt design inspired by legendary warriors.",
     "img": ["IMG_2757.webp", "IMG_8102.jpg", "IMG_8098.jpg", "IMG_8100.jpg", "IMG_8104.jpg"],
     "size": ["S", "M", "L"],
-    "color": "WHITE",
+    "color": "BEIGE",
     "weight": 1700,
     "dimensions": { "length": 1700, "width": 1700, "height": 1700 },
     "url": "/products/the-sword/",
@@ -71,7 +71,7 @@ const links = [
     "title": "Trustissue",
     "slug": "trustissue",
     "price": 1799,
-    "compare_at_price": 1295,
+    "compare_at_price": 1399,
     "description": "A bold statement piece for those who keep their circle small and real.",
     "img": ["IMG_2760.webp", "IMG_8105.jpg", "IMG_8106.jpg", "IMG_8107.jpg", "IMG_8108.jpg"],
     "size": ["S", "M", "L"],
@@ -85,11 +85,11 @@ const links = [
     "title": "Fallen Angel",
     "slug": "fallen-angel",
     "price": 1799,
-    "compare_at_price": 1295,
+    "compare_at_price": 1399,
     "description": "A t-shirt that blends dark aesthetics with a rebellious spirit.",
     "img": ["IMG_8111.jpg", "IMG_8109.jpg", "IMG_8110.jpg", "IMG_8112.jpg"],
     "size": ["S", "M", "L"],
-    "color": "WHITE",
+    "color": "BEIGE",
     "weight": 1700,
     "dimensions": { "length": 1700, "width": 1700, "height": 1700 },
     "url": "/products/fallen-angel/",
@@ -99,11 +99,11 @@ const links = [
     "title": "Mastermind",
     "slug": "mastermind",
     "price": 1799,
-    "compare_at_price": 1295,
+    "compare_at_price": 1399,
     "description": "A strategic and stylish t-shirt for those who think three moves ahead.",
     "img": ["IMG_8129.jpg", "IMG_8127.jpg", "IMG_8128.jpg", "IMG_8130.jpg"],
     "size": ["S", "M", "L"],
-    "color": "WHITE",
+    "color": "BEIGE",
     "weight": 1700,
     "dimensions": { "length": 1700, "width": 1700, "height": 1700 },
     "url": "/products/mastermind/",
@@ -113,7 +113,7 @@ const links = [
     "title": "Gods Child",
     "slug": "gods-child",
     "price": 1799,
-    "compare_at_price": 1295,
+    "compare_at_price": 1399,
     "description": "A divine statement t-shirt for those who embrace their self.",
     "img": ["IMG_8120.jpg", "IMG_8118.jpg", "IMG_8119.jpg", "IMG_8121.jpg"],
     "size": ["S", "M", "L"],
@@ -218,7 +218,7 @@ const IndexPage = () => {
           display: "flex",
         }}
       >
-        <p className="logo-text" style={{ fontSize: "var(--font-lt)", color: "var(--color-primary)" }}>
+        <p className="logo-textc" style={{ color: "var(--color-primary)" }}>
           COLLECTION
         </p>
         {/* Additional elements can go here */}
@@ -271,7 +271,7 @@ const IndexPage = () => {
           display: "flex",
         }}
       >
-        <p className="logo-text" style={{ fontSize: "var(--font-lt)", color: "var(--color-primary)" }}>
+        <p className="logo-textc" style={{ color: "var(--color-primary)" }}>
           ABOUT US
         </p>
         {/* Additional repeating elements can be added here */}

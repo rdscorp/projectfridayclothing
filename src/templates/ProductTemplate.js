@@ -192,7 +192,7 @@ const ProductPage = ({ data, pageContext }) => {
         }}>
           <div style={{
             display: "flex", gap: "20px", width: "500px", flexDirection: 'column',
-            backdropFilter: 'blur(1rem)', backgroundColor: '#056D63', borderRadius: '10px',
+            backdropFilter: 'blur(1rem)', backgroundColor: '#000', borderRadius: '10px',
             border: '4px white solid',
             alignSelf: 'center',
             justifySelf: 'center'
@@ -220,7 +220,7 @@ const ProductPage = ({ data, pageContext }) => {
         }}>
           <div style={{
             display: "flex", gap: "20px", width: "500px", flexDirection: 'column',
-            backdropFilter: 'blur(1rem)', backgroundColor: '#056D63', borderRadius: '10px',
+            backdropFilter: 'blur(1rem)', backgroundColor: '#000', borderRadius: '10px',
             border: '4px white solid',
             alignSelf: 'center',
             justifySelf: 'center'

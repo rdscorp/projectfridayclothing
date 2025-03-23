@@ -245,7 +245,7 @@ pre tt:after {
 }
 
 .logo-text {
-  font-family: 'AdamCgProBold';
+  font-family: 'AdamCgPro';
   font-size: var(--font-sm);
 }
 .logoTextComponentMain{
@@ -399,6 +399,16 @@ pre tt:after {
   .maintext{
     font-family: 'AdamCgProBold';
     font-size: 40px;
+    color: #fff;
+  }
+  .maintextcart{
+    font-family: 'AdamCgProBold';
+    font-size: 40px;
+    color: #fff;
+  }
+  .maintextcartprice{
+    font-family: 'AdamCgProBold';
+    font-size: 30px;
     color: #fff;
   }
 }
@@ -664,8 +674,23 @@ pre tt:after {
     height: 200px;
     z-index: 10;
   }
+  .cart-container{
+    .maintextcart{
+      font-family: 'AdamCgProBold';
+      font-size: 20px;
+      color: #fff;
+    }
+    .maintextcartprice{
+      font-family: 'AdamCgProBold';
+      font-size: 17px;
+      color: #fff;
+    }
+  }
 }
-
+.logo-textc{
+  font-size: 17px;
+  font-family: AdamCgProBold;
+}
 .default-image,
 .hover-image {
   position: absolute;

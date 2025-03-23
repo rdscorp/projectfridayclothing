@@ -164,7 +164,7 @@ const Cart = () => {
         <Layout>
             <Seo title="Cart" />
             <div className="cart-container">
-                <h1 className="maintext">Your Cart</h1>
+                <h1 className="maintextcart">Your Cart</h1>
                 {cart.length === 0 ? (
                     <p style={{
                         color: "#fff",
@@ -190,7 +190,7 @@ const Cart = () => {
                     <h1 style={{
                         marginTop: "30px",
                         color: "#fff",
-                    }}>Total = ₹{cart.reduce((sum, [, item]) => sum + item.qty * item.compare_at_price, 0)}</h1>
+                    }} className="maintextcartprice">Total = ₹{cart.reduce((sum, [, item]) => sum + item.qty * item.compare_at_price, 0)}</h1>
                     <button onClick={()=>handleCheckout(cart)} style={{ background: "#056D63", width: "100%", height: "50px", outline: "none", border: "none", fontSize: "18px", color: "#fff", marginTop: "30px", cursor: "pointer" }}>
                         CHECKOUT
                     </button>
