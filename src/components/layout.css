@@ -445,6 +445,12 @@ pre tt:after {
   font-size: 28.5px;
   font-family: 'AdamCgProBold';
 }
+.image-container {
+  position: relative;
+  width: 300px; /* Adjust as needed */
+  height: 385px;
+  z-index: 10;
+}
 @media (max-width: 768px) {
   .cart-item{
     display: flex;
@@ -652,13 +658,12 @@ pre tt:after {
   .esb2:active{
     background-color: #056D63cc;
   }
-}
-
-.image-container {
-  position: relative;
-  width: 300px; /* Adjust as needed */
-  height: 385px;
-  z-index: 10;
+  .image-container {
+    position: relative;
+    width: 200px; /* Adjust as needed */
+    height: 200px;
+    z-index: 10;
+  }
 }
 
 .default-image,

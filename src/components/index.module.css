@@ -116,12 +116,35 @@
 }
 
 @media (max-width: 768px) {
-  .list {
-    place-content: center;
-  }
   .aboutImage{
     margin-bottom: var(--space-3);
     width: 25%;
     border: 3px solid #fff;
+  }
+  .list {
+    place-content: center;
+    display: grid;
+    margin: 0;
+    /* https://css-tricks.com/responsive-layouts-fewer-media-queries/ */
+    --w: 130px;
+    --n: 2;
+    gap: 20px;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(max(var(--w), 100%/ (var(--n) + 1) + 0.1%), 1fr)
+    );
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+  .listItemLink {
+    color: var(--color-primary);
+    font-weight: bold;
+    font-size: 12px;
+  }
+  .listItemLinkPrice{
+    font-size: 12px;
+  }
+  .pcOnlyText{
+    display: none;
   }
 }

@@ -225,13 +225,13 @@ const IndexPage = () => {
       </div>
       <ul className={styles.list}>
         {links.map((link) => (
-          <li to={link.url} key={link.url} className={styles.listItem}>
+          <Link to={link.url} key={link.url} className={styles.listItem}>
             <div className="image-container" style={{ width: "100%" }}>
               <Link 
               to={link.url}
               style={{
                 position: "relative", display: "flex", justifySelf: "center", overflow: "hidden",
-                width: "100%", justifyContent: "center",
+                width: "100%", height:"auto", justifyContent: "center",
               }}>
                 <HoverImage dIpath={link.img[0]} hIpath={link.img[1]} />
               </Link>
@@ -255,10 +255,10 @@ const IndexPage = () => {
                 marginTop: '10px'
               }}><a className={styles.listItemLink} href={`${link.url}${utmParameters}`}>
                 {link.title}
-              </a><span style={{ color: `var(--color-primary)`, }}><s style={{ color: `#ffffff90` }}>₹{link.price}</s> <span style={{
+              </a><span className={styles.listItemLinkPrice} style={{ color: `var(--color-primary)`, }}><s style={{ color: `#ffffff90` }}>₹{link.price}</s> <span style={{
                 color:'#FF4E4E', fontWeight: 'bold'
               }}>₹{link.compare_at_price}</span></span></span>
-          </li>
+          </Link>
         ))}
       </ul>
       {/* About Section */}
@@ -325,6 +325,7 @@ const IndexPage = () => {
           urban aesthetics with premium craftsmanship.
           <br />
 
+          <span className={styles.pcOnlyText}>
           <br />
           At PROJECT FRIDAY, we don’t just make clothes; we create expressions of confidence and attitude.
           Whether it's a statement streetwear piece, a minimal everyday essential, or a bold standout design,
@@ -339,6 +340,7 @@ const IndexPage = () => {
           on self-expression. PROJECT FRIDAY is more than a brand—it’s a lifestyle, a statement, and a celebration
           of the fearless spirit that defines the youth of today. Join us in shaping the future of fashion, one bold
           step at a time. This is PROJECT FRIDAY—where every day feels like a new beginning.
+          </span>
         </h3>
       </div>
     </Layout>
